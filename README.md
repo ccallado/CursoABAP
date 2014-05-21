@@ -1,5 +1,4 @@
-C
-rsoABAP
+CursoABAP
 =========
 
 Curso ABAP Netweaver 7.3
