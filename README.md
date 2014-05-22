@@ -75,3 +75,14 @@ Importante, en las preguntas utilizan mucho la doble negación.
 
 Capitulo 2.
 HTML utiliza la aplicación ICM
+
+Favoritos.
+Se puede exportar el menu de favoritos. En el Menú Favoritos, descargar a PC y cargar de PC.
+
+Ayudas.
+F1.- Texto explicativo del campo donde estemos situados.
+F4.- Buscador de valores posibles del campo.
+
+Consultar número de transacciones.
+SE16 tabla TSTCT idioma español y cantidad de registros.
+
