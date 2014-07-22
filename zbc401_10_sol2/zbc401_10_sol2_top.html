@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZBC401_10_SOL2_TOP</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZBC401_10_SOL2_TOP</h2>
+<h3> Description: </h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;Include&nbsp;BC405_INTRO_S1_TOP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br />
+*&---------------------------------------------------------------------*<br />
+<br />
+   </div>
+   <div class="code">
+DATA: gs_flight TYPE dv_flights,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gt_flight&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;dv_flights.<br />
+CONSTANTS gc_sele VALUE 'X'.<br />
+<br />
+SELECTION-SCREEN BEGIN OF TABBED BLOCK tab_block FOR 6 LINES.<br />
+SELECTION-SCREEN TAB (10) tab1 USER-COMMAND comm1 DEFAULT SCREEN 1100.<br />
+SELECTION-SCREEN TAB (10) tab2 USER-COMMAND comm2 DEFAULT SCREEN 1200.<br />
+SELECTION-SCREEN TAB (10) tab3 USER-COMMAND comm3 DEFAULT SCREEN 1300.<br />
+SELECTION-SCREEN END OF BLOCK tab_block.<br />
+<br />
+SELECTION-SCREEN BEGIN OF SCREEN 1100 AS SUBSCREEN.<br />
+SELECTION-SCREEN BEGIN OF BLOCK g01 WITH FRAME TITLE text-s11.<br />
+SELECT-OPTIONS: so_carr FOR gs_flight-carrid MEMORY ID car,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;so_conn&nbsp;FOR&nbsp;gs_flight-connid.<br />
+SELECTION-SCREEN END   OF BLOCK g01.<br />
+SELECTION-SCREEN END   OF SCREEN 1100.<br />
+<br />
+SELECTION-SCREEN BEGIN OF SCREEN 1200 AS SUBSCREEN.<br />
+SELECTION-SCREEN BEGIN OF BLOCK g02 WITH FRAME TITLE text-s12.<br />
+SELECT-OPTIONS: so_fld  FOR gs_flight-fldate.<br />
+<br />
+SELECTION-SCREEN END   OF BLOCK g02.<br />
+SELECTION-SCREEN END   OF SCREEN 1200.<br />
+<br />
+SELECTION-SCREEN BEGIN OF SCREEN 1300 AS SUBSCREEN.<br />
+SELECTION-SCREEN BEGIN OF BLOCK param.<br />
+SELECTION-SCREEN BEGIN OF BLOCK g03 WITH FRAME TITLE text-s13.<br />
+PARAMETERS: pa_lim_1 RADIOBUTTON GROUP rad1,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pa_lim_2&nbsp;RADIOBUTTON&nbsp;GROUP&nbsp;rad1,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pa_lim_3&nbsp;RADIOBUTTON&nbsp;GROUP&nbsp;rad1&nbsp;DEFAULT&nbsp;'X'.<br />
+SELECTION-SCREEN END   OF BLOCK g03.<br />
+PARAMETERS: pa_cotfr TYPE dv_flights-countryfr.<br />
+SELECTION-SCREEN END OF BLOCK param.<br />
+SELECTION-SCREEN END   OF SCREEN 1300.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.2 - E.G.Mellodew. 1998-2014. Sap Release 731</td>
+   </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZBC401_10_MAIN17_CLASSVEH</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZBC401_10_MAIN17_CLASSVEH</h2>
+<h3> Description: Include ZBC401_00_MAIN13_CLASSVEH</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;Include&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZBC401_00_MAIN13_CLASSVEH<br />
+*&---------------------------------------------------------------------*<br />
+<br />
+*---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLASS&nbsp;lcl_vehicle&nbsp;DEFINITION<br />
+*---------------------------------------------------------------------*<br />
+<br />
+   </div>
+   <div class="code">
+CLASS lcl_vehicle DEFINITION.<br />
+<br />
+&nbsp;&nbsp;PUBLIC&nbsp;SECTION.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"-------------------<br />
+&nbsp;&nbsp;&nbsp;&nbsp;METHODS:&nbsp;get_average_fuel&nbsp;IMPORTING&nbsp;im_distance&nbsp;TYPE&nbsp;s_distance<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_fuel&nbsp;TYPE&nbsp;ty_fuel<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING&nbsp;value(re_avgfuel)&nbsp;TYPE&nbsp;ty_fuel.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;METHODS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;constructor&nbsp;IMPORTING&nbsp;im_make&nbsp;&nbsp;&nbsp;TYPE&nbsp;string<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_distance&nbsp;&nbsp;&nbsp;TYPE&nbsp;s_distance<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_fuel&nbsp;TYPE&nbsp;ty_fuel.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;METHODS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display_attributes.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;METHODS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set_make&nbsp;IMPORTING&nbsp;im_make&nbsp;TYPE&nbsp;string.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;METHODS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get_make&nbsp;EXPORTING&nbsp;ex_make&nbsp;TYPE&nbsp;string.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLASS-METHODS&nbsp;get_count&nbsp;EXPORTING&nbsp;re_count&nbsp;TYPE&nbsp;i.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EVENTS:&nbsp;vehicle_created.<br />
+<br />
+&nbsp;&nbsp;PROTECTED&nbsp;SECTION.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA:&nbsp;iv_distance&nbsp;TYPE&nbsp;s_distance,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_fuel&nbsp;TYPE&nbsp;ty_fuel.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS:&nbsp;linea&nbsp;TYPE&nbsp;i&nbsp;VALUE&nbsp;130.<br />
+&nbsp;&nbsp;PRIVATE&nbsp;SECTION.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"-------------------<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA:&nbsp;make&nbsp;&nbsp;&nbsp;TYPE&nbsp;string.<br />
+<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;METHODS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;init_make.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLASS-DATA:&nbsp;&nbsp;n_o_vehicles&nbsp;TYPE&nbsp;i.<br />
+<br />
+ENDCLASS. "lcl_vehicle DEFINITION<br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+*---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLASS&nbsp;lcl_vehicle&nbsp;IMPLEMENTATION<br />
+*---------------------------------------------------------------------*<br />
+<br />
+*---------------------------------------------------------------------*<br />
+<br />
+   </div>
+   <div class="code">
+CLASS lcl_vehicle IMPLEMENTATION.<br />
+&nbsp;&nbsp;METHOD&nbsp;get_average_fuel.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;re_avgfuel&nbsp;=&nbsp;im_distance&nbsp;/&nbsp;im_fuel.<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;WRITE:&nbsp;100&nbsp;'Media&nbsp;km&nbsp;',&nbsp;re_avgfuel&nbsp;DECIMALS&nbsp;2&nbsp;LEFT-JUSTIFIED&nbsp;.<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;WRITE:&nbsp;AT&nbsp;linea&nbsp;'Media&nbsp;km&nbsp;',&nbsp;re_avgfuel&nbsp;DECIMALS&nbsp;2&nbsp;LEFT-JUSTIFIED&nbsp;&nbsp;.<br />
+&nbsp;&nbsp;ENDMETHOD.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"get_average_fuel<br />
+<br />
+&nbsp;&nbsp;METHOD&nbsp;constructor.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;make&nbsp;=&nbsp;im_make.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;iv_distance&nbsp;=&nbsp;im_distance.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;iv_fuel&nbsp;=&nbsp;im_fuel.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ADD&nbsp;1&nbsp;TO&nbsp;n_o_vehicles.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;RAISE&nbsp;EVENT&nbsp;vehicle_created.<br />
+&nbsp;&nbsp;ENDMETHOD.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"constructor<br />
+<br />
+&nbsp;&nbsp;METHOD&nbsp;set_make.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;im_make&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;init_make(&nbsp;).&nbsp;&nbsp;&nbsp;"&nbsp;me-&gt;init_make(&nbsp;).&nbsp;also&nbsp;possible<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;make&nbsp;=&nbsp;im_make.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;ENDMETHOD.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"set_make<br />
+<br />
+&nbsp;&nbsp;METHOD&nbsp;init_make.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;make&nbsp;=&nbsp;'default&nbsp;make'.<br />
+&nbsp;&nbsp;ENDMETHOD.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"init_make<br />
+<br />
+&nbsp;&nbsp;METHOD&nbsp;get_make.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ex_make&nbsp;=&nbsp;make.<br />
+<br />
+&nbsp;&nbsp;ENDMETHOD.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"get_make<br />
+<br />
+&nbsp;&nbsp;METHOD&nbsp;display_attributes.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WRITE:&nbsp;make.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;iv_med&nbsp;&nbsp;type&nbsp;s_consum.<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;WRITE:&nbsp;20&nbsp;'Distancia&nbsp;',&nbsp;iv_distance&nbsp;DECIMALS&nbsp;2&nbsp;LEFT-JUSTIFIED,&nbsp;'en&nbsp;km',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;58&nbsp;&nbsp;'Deposito&nbsp;',&nbsp;iv_fuel&nbsp;DECIMALS&nbsp;2&nbsp;LEFT-JUSTIFIED,&nbsp;'en&nbsp;litros'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;get_average_fuel(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_distance&nbsp;=&nbsp;iv_distance&nbsp;im_fuel&nbsp;=&nbsp;iv_fuel&nbsp;).<br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;iv_med&nbsp;=&nbsp;get_average_fuel(<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_distance&nbsp;=&nbsp;iv_distance&nbsp;im_fuel&nbsp;=&nbsp;iv_fuel&nbsp;).<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;ENDMETHOD.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"display_attributes<br />
+<br />
+&nbsp;&nbsp;METHOD&nbsp;get_count.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;re_count&nbsp;=&nbsp;n_o_vehicles.<br />
+&nbsp;&nbsp;ENDMETHOD.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"get_count<br />
+<br />
+ENDCLASS. "lcl_vehicle IMPLEMENTATION<br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+*---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLASS&nbsp;lcl_truck&nbsp;DEFINITION<br />
+*---------------------------------------------------------------------*<br />
+*<br />
+*---------------------------------------------------------------------*<br />
+<br />
+   </div>
+   <div class="code">
+CLASS lcl_truck DEFINITION INHERITING FROM lcl_vehicle.<br />
+<br />
+&nbsp;&nbsp;PUBLIC&nbsp;SECTION.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"-------------------<br />
+&nbsp;&nbsp;&nbsp;&nbsp;METHODS:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;constructor&nbsp;IMPORTING&nbsp;im_make&nbsp;TYPE&nbsp;string<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_cargo&nbsp;TYPE&nbsp;ty_cargo<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_distance&nbsp;TYPE&nbsp;s_distance<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_fuel&nbsp;TYPE&nbsp;ty_fuel.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;METHODS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display_attributes&nbsp;REDEFINITION.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;METHODS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get_cargo&nbsp;RETURNING&nbsp;value(re_cargo)&nbsp;TYPE&nbsp;ty_cargo.<br />
+<br />
+&nbsp;&nbsp;PRIVATE&nbsp;SECTION.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"-------------------<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA:&nbsp;max_cargo&nbsp;TYPE&nbsp;ty_cargo.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;data:&nbsp;iv_distance&nbsp;TYPE&nbsp;s_distance,<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_fuel&nbsp;type&nbsp;ty_fuel,<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_consum&nbsp;TYPE&nbsp;i.<br />
+<br />
+   </div>
+   <div class="code">
+ENDCLASS. "lcl_truck DEFINITION<br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+*---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLASS&nbsp;lcl_truck&nbsp;IMPLEMENTATION<br />
+*---------------------------------------------------------------------*<br />
+*<br />
+*---------------------------------------------------------------------*<br />
+<br />
+   </div>
+   <div class="code">
+CLASS lcl_truck IMPLEMENTATION.<br />
+<br />
+&nbsp;&nbsp;METHOD&nbsp;constructor.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;super-&gt;constructor(&nbsp;im_make&nbsp;=&nbsp;im_make<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_distance&nbsp;=&nbsp;im_distance<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_fuel&nbsp;=&nbsp;im_fuel&nbsp;).<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;max_cargo&nbsp;=&nbsp;im_cargo.<br />
+&nbsp;&nbsp;ENDMETHOD.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"constructor<br />
+<br />
+&nbsp;&nbsp;METHOD&nbsp;display_attributes.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WRITE:&nbsp;/&nbsp;icon_ws_truck&nbsp;AS&nbsp;ICON.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;super-&gt;display_attributes(&nbsp;).<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WRITE:&nbsp;/,&nbsp;20&nbsp;'&nbsp;Cargo&nbsp;=&nbsp;',&nbsp;max_cargo.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ULINE.<br />
+&nbsp;&nbsp;ENDMETHOD.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"display_attributes<br />
+<br />
+&nbsp;&nbsp;METHOD&nbsp;get_cargo.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;re_cargo&nbsp;=&nbsp;max_cargo.<br />
+&nbsp;&nbsp;ENDMETHOD.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"get_cargo<br />
+<br />
+ENDCLASS. "lcl_truck DEFINITION<br />
+<br />
+   </div>
+   <div class="codeComment">
+*---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLASS&nbsp;lcl_bus&nbsp;DEFINITION<br />
+*---------------------------------------------------------------------*<br />
+*<br />
+*---------------------------------------------------------------------*<br />
+<br />
+   </div>
+   <div class="code">
+CLASS lcl_bus DEFINITION INHERITING FROM lcl_vehicle.<br />
+<br />
+&nbsp;&nbsp;PUBLIC&nbsp;SECTION.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"-------------------<br />
+&nbsp;&nbsp;&nbsp;&nbsp;METHODS:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;constructor&nbsp;IMPORTING&nbsp;im_make&nbsp;TYPE&nbsp;string<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_passengers&nbsp;TYPE&nbsp;i<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_distance&nbsp;&nbsp;&nbsp;TYPE&nbsp;s_distance<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_fuel&nbsp;TYPE&nbsp;ty_fuel.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;METHODS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display_attributes&nbsp;REDEFINITION.<br />
+<br />
+&nbsp;&nbsp;PRIVATE&nbsp;SECTION.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"-------------------<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA:&nbsp;max_passengers&nbsp;TYPE&nbsp;i.<br />
+<br />
+ENDCLASS. "lcl_bus DEFINITION<br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+*---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLASS&nbsp;lcl_bus&nbsp;IMPLEMENTATION<br />
+*---------------------------------------------------------------------*<br />
+*<br />
+*---------------------------------------------------------------------*<br />
+<br />
+<br />
+   </div>
+   <div class="code">
+CLASS lcl_bus IMPLEMENTATION.<br />
+<br />
+&nbsp;&nbsp;METHOD&nbsp;constructor.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;super-&gt;constructor(&nbsp;im_make&nbsp;=&nbsp;im_make<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_distance&nbsp;=&nbsp;im_distance<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_fuel&nbsp;=&nbsp;im_fuel&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;max_passengers&nbsp;=&nbsp;im_passengers.<br />
+&nbsp;&nbsp;ENDMETHOD.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"constructor<br />
+<br />
+&nbsp;&nbsp;METHOD&nbsp;display_attributes.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WRITE:&nbsp;/&nbsp;icon_transportation_mode&nbsp;AS&nbsp;ICON.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;super-&gt;display_attributes(&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WRITE:&nbsp;/,&nbsp;20&nbsp;'&nbsp;Passengers&nbsp;=&nbsp;',&nbsp;max_passengers.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ULINE.<br />
+&nbsp;&nbsp;ENDMETHOD.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"display_attributes<br />
+<br />
+<br />
+ENDCLASS. "lcl_bus DEFINITION<br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+*---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLASS&nbsp;lcl_rental&nbsp;DEFINITION<br />
+*---------------------------------------------------------------------*<br />
+*<br />
+*---------------------------------------------------------------------*<br />
+<br />
+   </div>
+   <div class="code">
+CLASS lcl_rental DEFINITION.<br />
+<br />
+&nbsp;&nbsp;PUBLIC&nbsp;SECTION.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"-------------------<br />
+&nbsp;&nbsp;&nbsp;&nbsp;METHODS:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;constructor&nbsp;IMPORTING&nbsp;im_name&nbsp;TYPE&nbsp;string.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;METHODS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_vehicle&nbsp;FOR&nbsp;EVENT&nbsp;vehicle_created&nbsp;OF&nbsp;lcl_vehicle<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING&nbsp;sender.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;METHODS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display_attributes.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;INTERFACES:&nbsp;zif_00_partner.<br />
+&nbsp;&nbsp;PRIVATE&nbsp;SECTION.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"-------------------<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA:&nbsp;name&nbsp;TYPE&nbsp;string,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vehicle_list&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;REF&nbsp;TO&nbsp;lcl_vehicle.<br />
+ENDCLASS. "lcl_rental DEFINITION<br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+*---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLASS&nbsp;lcl_rental&nbsp;IMPLEMENTATION<br />
+*---------------------------------------------------------------------*<br />
+*<br />
+*---------------------------------------------------------------------*<br />
+<br />
+   </div>
+   <div class="code">
+CLASS lcl_rental IMPLEMENTATION.<br />
+&nbsp;&nbsp;METHOD&nbsp;zif_00_partner~display_partner.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;display_attributes(&nbsp;).<br />
+&nbsp;&nbsp;ENDMETHOD.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"zif_00_partners~display_partner<br />
+<br />
+&nbsp;&nbsp;METHOD&nbsp;&nbsp;constructor.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;=&nbsp;im_name.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;HANDLER&nbsp;add_vehicle&nbsp;FOR&nbsp;ALL&nbsp;INSTANCES.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;RAISE&nbsp;EVENT&nbsp;zif_00_partner~partner_created.<br />
+&nbsp;&nbsp;ENDMETHOD.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"constructor<br />
+<br />
+&nbsp;&nbsp;METHOD&nbsp;&nbsp;add_vehicle.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;APPEND&nbsp;sender&nbsp;TO&nbsp;vehicle_list.<br />
+&nbsp;&nbsp;ENDMETHOD.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"add_vehicle<br />
+<br />
+&nbsp;&nbsp;METHOD&nbsp;&nbsp;display_attributes.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA:&nbsp;r_vehicle&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;lcl_vehicle.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;SKIP&nbsp;2.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WRITE:&nbsp;/&nbsp;&nbsp;icon_transport_proposal&nbsp;AS&nbsp;ICON,&nbsp;name.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WRITE:&nbsp;/,&nbsp;'&nbsp;Lista&nbsp;de&nbsp;vehículos:&nbsp;'.&nbsp;ULINE.&nbsp;ULINE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LOOP&nbsp;AT&nbsp;vehicle_list&nbsp;INTO&nbsp;r_vehicle.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r_vehicle-&gt;display_attributes(&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDLOOP.<br />
+&nbsp;&nbsp;ENDMETHOD.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"display_attributes<br />
+<br />
+ENDCLASS. "lcl_rental IMPLEMENTATION<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.2 - E.G.Mellodew. 1998-2014. Sap Release 731</td>
+   </tr>
+</table>
+</body>
+</html>

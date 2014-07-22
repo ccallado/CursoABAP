@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZCL_BC402_10_AREA</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for class: ZCL_BC402_10_AREA</h2>
+<h3> Description: Memory Area Alumno 10</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Class attributes.                                                    *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+Instantiation: Private<br />
+Message class: <br />
+State: Implemented<br />
+Final Indicator: X<br />
+R/3 Release: 731<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Public section of class.                                             *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+class ZCL_BC402_10_AREA definition<br />
+&nbsp;&nbsp;public<br />
+&nbsp;&nbsp;inheriting&nbsp;from&nbsp;CL_SHM_AREA<br />
+&nbsp;&nbsp;final<br />
+&nbsp;&nbsp;create&nbsp;private<br />
+<br />
+&nbsp;&nbsp;global&nbsp;friends&nbsp;CL_SHM_AREA&nbsp;.<br />
+<br />
+public section.<br />
+<br />
+&nbsp;&nbsp;constants&nbsp;AREA_NAME&nbsp;type&nbsp;SHM_AREA_NAME&nbsp;value&nbsp;'ZCL_BC402_10_AREA'.&nbsp;"#EC&nbsp;NOTEXT<br />
+&nbsp;&nbsp;data&nbsp;ROOT&nbsp;type&nbsp;ref&nbsp;to&nbsp;ZCL_BC402_10_ROOT&nbsp;read-only&nbsp;.<br />
+<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/class_constructor&nbsp;..html">CLASS_CONSTRUCTOR&nbsp;.</a><br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/get_generator_version.html">GET_GENERATOR_VERSION</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(GENERATOR_VERSION)&nbsp;type&nbsp;I&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/attach_for_read.html">ATTACH_FOR_READ</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLIENT&nbsp;type&nbsp;SHM_CLIENT&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INST_NAME&nbsp;type&nbsp;SHM_INST_NAME&nbsp;default&nbsp;CL_SHM_AREA=&gt;DEFAULT_INSTANCE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;preferred&nbsp;parameter&nbsp;INST_NAME<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(HANDLE)&nbsp;type&nbsp;ref&nbsp;to&nbsp;ZCL_BC402_10_AREA<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_INCONSISTENT<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_NO_ACTIVE_VERSION<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_READ_LOCK_ACTIVE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_EXCLUSIVE_LOCK_ACTIVE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_PARAMETER_ERROR<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_CHANGE_LOCK_ACTIVE&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/attach_for_write.html">ATTACH_FOR_WRITE</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLIENT&nbsp;type&nbsp;SHM_CLIENT&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INST_NAME&nbsp;type&nbsp;SHM_INST_NAME&nbsp;default&nbsp;CL_SHM_AREA=&gt;DEFAULT_INSTANCE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ATTACH_MODE&nbsp;type&nbsp;SHM_ATTACH_MODE&nbsp;default&nbsp;CL_SHM_AREA=&gt;ATTACH_MODE_DEFAULT<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WAIT_TIME&nbsp;type&nbsp;I&nbsp;default&nbsp;0<br />
+&nbsp;&nbsp;&nbsp;&nbsp;preferred&nbsp;parameter&nbsp;INST_NAME<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(HANDLE)&nbsp;type&nbsp;ref&nbsp;to&nbsp;ZCL_BC402_10_AREA<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_EXCLUSIVE_LOCK_ACTIVE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_VERSION_LIMIT_EXCEEDED<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_CHANGE_LOCK_ACTIVE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_PARAMETER_ERROR<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_PENDING_LOCK_REMOVED&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/attach_for_update.html">ATTACH_FOR_UPDATE</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLIENT&nbsp;type&nbsp;SHM_CLIENT&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INST_NAME&nbsp;type&nbsp;SHM_INST_NAME&nbsp;default&nbsp;CL_SHM_AREA=&gt;DEFAULT_INSTANCE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ATTACH_MODE&nbsp;type&nbsp;SHM_ATTACH_MODE&nbsp;default&nbsp;CL_SHM_AREA=&gt;ATTACH_MODE_DEFAULT<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WAIT_TIME&nbsp;type&nbsp;I&nbsp;default&nbsp;0<br />
+&nbsp;&nbsp;&nbsp;&nbsp;preferred&nbsp;parameter&nbsp;INST_NAME<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(HANDLE)&nbsp;type&nbsp;ref&nbsp;to&nbsp;ZCL_BC402_10_AREA<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_INCONSISTENT<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_NO_ACTIVE_VERSION<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_EXCLUSIVE_LOCK_ACTIVE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_VERSION_LIMIT_EXCEEDED<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_CHANGE_LOCK_ACTIVE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_PARAMETER_ERROR<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_PENDING_LOCK_REMOVED&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/detach_area.html">DETACH_AREA</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLIENT&nbsp;type&nbsp;SHM_CLIENT&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RC)&nbsp;type&nbsp;SHM_RC&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/invalidate_instance.html">INVALIDATE_INSTANCE</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLIENT&nbsp;type&nbsp;SHM_CLIENT&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INST_NAME&nbsp;type&nbsp;SHM_INST_NAME&nbsp;default&nbsp;CL_SHM_AREA=&gt;DEFAULT_INSTANCE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TERMINATE_CHANGER&nbsp;type&nbsp;ABAP_BOOL&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;preferred&nbsp;parameter&nbsp;INST_NAME<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RC)&nbsp;type&nbsp;SHM_RC<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_PARAMETER_ERROR&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/invalidate_area.html">INVALIDATE_AREA</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLIENT&nbsp;type&nbsp;SHM_CLIENT&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TERMINATE_CHANGER&nbsp;type&nbsp;ABAP_BOOL&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RC)&nbsp;type&nbsp;SHM_RC<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_PARAMETER_ERROR&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/free_instance.html">FREE_INSTANCE</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLIENT&nbsp;type&nbsp;SHM_CLIENT&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INST_NAME&nbsp;type&nbsp;SHM_INST_NAME&nbsp;default&nbsp;CL_SHM_AREA=&gt;DEFAULT_INSTANCE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TERMINATE_CHANGER&nbsp;type&nbsp;ABAP_BOOL&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;preferred&nbsp;parameter&nbsp;INST_NAME<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RC)&nbsp;type&nbsp;SHM_RC<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_PARAMETER_ERROR&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/free_area.html">FREE_AREA</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLIENT&nbsp;type&nbsp;SHM_CLIENT&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TERMINATE_CHANGER&nbsp;type&nbsp;ABAP_BOOL&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RC)&nbsp;type&nbsp;SHM_RC<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_PARAMETER_ERROR&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/get_instance_infos.html">GET_INSTANCE_INFOS</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INST_NAME&nbsp;type&nbsp;SHM_INST_NAME&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLIENT&nbsp;type&nbsp;SHM_CLIENT&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(INFOS)&nbsp;type&nbsp;SHM_INST_INFOS&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/build.html">BUILD</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INST_NAME&nbsp;type&nbsp;SHM_INST_NAME&nbsp;default&nbsp;CL_SHM_AREA=&gt;DEFAULT_INSTANCE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHMA_NOT_CONFIGURED<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHMA_INCONSISTENT<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_BUILD_FAILED&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/set_root.html">SET_ROOT</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROOT&nbsp;type&nbsp;ref&nbsp;to&nbsp;ZCL_BC402_10_ROOT<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_INITIAL_REFERENCE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CX_SHM_WRONG_HANDLE&nbsp;.<br />
+<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/get_root.html">GET_ROOT</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;redefinition&nbsp;.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Private section of class.                                            *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+private section.<br />
+<br />
+&nbsp;&nbsp;constants&nbsp;_VERSION_&nbsp;type&nbsp;I&nbsp;value&nbsp;20.&nbsp;"#EC&nbsp;NOTEXT<br />
+&nbsp;&nbsp;class-data&nbsp;_TRACE_SERVICE&nbsp;type&nbsp;ref&nbsp;to&nbsp;IF_SHM_TRACE&nbsp;.<br />
+&nbsp;&nbsp;class-data&nbsp;_TRACE_ACTIVE&nbsp;type&nbsp;ABAP_BOOL&nbsp;value&nbsp;ABAP_FALSE.&nbsp;"#EC&nbsp;NOTEXT&nbsp;.<br />
+&nbsp;&nbsp;constants&nbsp;_TRANSACTIONAL&nbsp;type&nbsp;ABAP_BOOL&nbsp;value&nbsp;ABAP_FALSE.&nbsp;"#EC&nbsp;NOTEXT<br />
+&nbsp;&nbsp;constants&nbsp;_CLIENT_DEPENDENT&nbsp;type&nbsp;ABAP_BOOL&nbsp;value&nbsp;ABAP_TRUE.&nbsp;"#EC&nbsp;NOTEXT<br />
+&nbsp;&nbsp;constants&nbsp;_LIFE_CONTEXT&nbsp;type&nbsp;SHM_LIFE_CONTEXT&nbsp;value&nbsp;CL_SHM_AREA=&gt;LIFE_CONTEXT_APPSERVER.&nbsp;"#EC&nbsp;NOTEXT<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Protected section of class.                                          *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+protected section.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Types section of class.                                              *<br />
+**************************************************************************<br />
+*"* dummy include to reduce generation dependencies between<br />
+*"* class ZCL_BC402_10_AREA and it's users.<br />
+*"* touched if any type reference has been changed<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.2 - E.G.Mellodew. 1998-2014. Sap Release 731</td>
+   </tr>
+</table>
+</body>
+</html>

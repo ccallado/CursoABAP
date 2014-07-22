@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZBC400_10_REP_A</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZBC400_10_REP_A</h2>
+<h3> Description: Template: Report with Select Options and Classic List</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Report&nbsp;&nbsp;zbc400_10_rep_a<br />
+*&<br />
+*&---------------------------------------------------------------------*<br />
+*&<br />
+*&<br />
+*&---------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+REPORT  zbc400_10_rep_a.<br />
+<br />
+TYPE-POOLS: icon, col.<br />
+DATA:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gt_flights&nbsp;TYPE&nbsp;bc400_t_flights,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gs_flight&nbsp;&nbsp;TYPE&nbsp;bc400_s_flight.<br />
+CONSTANTS:<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;c_limite&nbsp;TYPE&nbsp;i&nbsp;VALUE&nbsp;50,<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;c_limite_roj&nbsp;&nbsp;TYPE&nbsp;s_flghtocc&nbsp;VALUE&nbsp;97,<br />
+&nbsp;&nbsp;c_limite_ama&nbsp;&nbsp;TYPE&nbsp;s_flghtocc&nbsp;VALUE&nbsp;75.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*data:&nbsp;zicono&nbsp;type&nbsp;z.<br />
+   </div>
+   <div class="code">
+PARAMETERS:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pa_car&nbsp;TYPE&nbsp;bc400_s_flight-carrid.<br />
+SELECT-OPTIONS:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;so_con&nbsp;FOR&nbsp;gs_flight-connid.<br />
+<br />
+TRY.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CALL&nbsp;METHOD&nbsp;cl_bc400_flightmodel=&gt;get_flights_range<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_carrid&nbsp;&nbsp;=&nbsp;pa_car<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_connid&nbsp;&nbsp;=&nbsp;so_con[]<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;et_flights&nbsp;=&nbsp;gt_flights.<br />
+<br />
+&nbsp;&nbsp;CATCH&nbsp;cx_bc400_no_data.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WRITE&nbsp;/&nbsp;'No&nbsp;flights&nbsp;for&nbsp;the&nbsp;specified&nbsp;connection'(cbr).<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;CATCH&nbsp;cx_bc400_no_auth&nbsp;.<br />
+   </div>
+   <div class="code">
+ENDTRY.<br />
+<br />
+LOOP AT gt_flights INTO gs_flight.<br />
+&nbsp;&nbsp;NEW-LINE.<br />
+&nbsp;&nbsp;IF&nbsp;gs_flight-percentage&nbsp;&gt;=&nbsp;c_limite_roj.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WRITE&nbsp;icon_red_light&nbsp;AS&nbsp;ICON.<br />
+&nbsp;&nbsp;ELSEIF&nbsp;gs_flight-percentage&nbsp;&gt;=&nbsp;c_limite_ama.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WRITE&nbsp;icon_yellow_light&nbsp;AS&nbsp;ICON.<br />
+&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WRITE&nbsp;icon_green_light&nbsp;AS&nbsp;ICON.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;WRITE:&nbsp;&nbsp;&nbsp;gs_flight-carrid&nbsp;COLOR&nbsp;COL_KEY&nbsp;,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gs_flight-connid&nbsp;COLOR&nbsp;COL_POSITIVE&nbsp;,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gs_flight-fldate&nbsp;COLOR&nbsp;COL_KEY&nbsp;,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gs_flight-seatsmax,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gs_flight-seatsocc,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gs_flight-percentage.<br />
+<br />
+ENDLOOP.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*Text&nbsp;elements<br />
+*----------------------------------------------------------<br />
+*&nbsp;CBR&nbsp;No&nbsp;flights&nbsp;for&nbsp;the&nbsp;specified&nbsp;connection<br />
+<br />
+<br />
+*Selection&nbsp;texts<br />
+*----------------------------------------------------------<br />
+*&nbsp;PA_CAR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Company&nbsp;name<br />
+*&nbsp;SO_CON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fly&nbsp;connection&nbsp;number<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.2 - E.G.Mellodew. 1998-2014. Sap Release 731</td>
+   </tr>
+</table>
+</body>
+</html>

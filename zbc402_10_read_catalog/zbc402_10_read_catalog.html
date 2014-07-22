@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZBC402_10_READ_CATALOG</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZBC402_10_READ_CATALOG</h2>
+<h3> Description: Memory Area Lectura Alumno 10</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Report&nbsp;&nbsp;ZBC402_10_READ_CATALOG<br />
+*&<br />
+*&---------------------------------------------------------------------*<br />
+*&<br />
+*&<br />
+*&---------------------------------------------------------------------*<br />
+<br />
+   </div>
+   <div class="code">
+REPORT  zbc402_10_read_catalog.<br />
+<br />
+DATA: go_handle  TYPE REF TO zcl_bc402_10_area,<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;go_catalog&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zcl_bc402_10_catalog,<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;go_root&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zcl_bc402_10_root,<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gt_flights&nbsp;&nbsp;&nbsp;TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bc402_t_sdynconn.<br />
+<br />
+PARAMETER:<br />
+&nbsp;&nbsp;pa_frcit&nbsp;TYPE&nbsp;s_from_cit,<br />
+&nbsp;&nbsp;pa_tocit&nbsp;TYPE&nbsp;s_to_city,<br />
+&nbsp;&nbsp;pa_earli&nbsp;TYPE&nbsp;s_date,<br />
+&nbsp;&nbsp;pa_lates&nbsp;TYPE&nbsp;s_date.<br />
+<br />
+START-OF-SELECTION.<br />
+&nbsp;&nbsp;go_handle&nbsp;=&nbsp;zcl_bc402_10_area=&gt;attach_for_read(&nbsp;).<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;CREATE&nbsp;OBJECT&nbsp;go_catalog<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;AREA&nbsp;HANDLE&nbsp;go_handle.<br />
+*<br />
+*&nbsp;&nbsp;CREATE&nbsp;OBJECT&nbsp;go_root<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;AREA&nbsp;HANDLE&nbsp;go_handle.<br />
+<br />
+*&nbsp;&nbsp;go_root-&gt;mo_catalog&nbsp;=&nbsp;go_catalog.<br />
+*&nbsp;&nbsp;go_handle-&gt;set_root(&nbsp;root&nbsp;=&nbsp;go_root&nbsp;).<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;go_handle-&gt;root-&gt;mo_catalog-&gt;get_flights(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_from_city&nbsp;=&nbsp;pa_frcit<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_to_city&nbsp;&nbsp;&nbsp;=&nbsp;pa_tocit<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_earliest&nbsp;&nbsp;=&nbsp;pa_earli<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_latest&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;pa_lates<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;et_flights&nbsp;&nbsp;&nbsp;=&nbsp;gt_flights&nbsp;).<br />
+<br />
+&nbsp;&nbsp;go_handle-&gt;detach(&nbsp;).<br />
+<br />
+&nbsp;&nbsp;CALL&nbsp;FUNCTION&nbsp;'BC402_DISPLAY_TABLE'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CHANGING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ct_table&nbsp;=&nbsp;gt_flights.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.2 - E.G.Mellodew. 1998-2014. Sap Release 731</td>
+   </tr>
+</table>
+</body>
+</html>

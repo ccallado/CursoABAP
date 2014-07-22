@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZBC401_10_MAIN17_E01</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZBC401_10_MAIN17_E01</h2>
+<h3> Description: Include ZBC401_00_MAIN5_E01</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;Include&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZBC401_00_MAIN5_E01<br />
+*&---------------------------------------------------------------------*<br />
+<br />
+<br />
+   </div>
+   <div class="code">
+START-OF-SELECTION.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**&nbsp;Crear&nbsp;agencia&nbsp;de&nbsp;viajes<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;CREATE&nbsp;OBJECT&nbsp;r_agency<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_name&nbsp;=&nbsp;'Viajar&nbsp;por&nbsp;el&nbsp;mundo'.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**&nbsp;Crear&nbsp;compaañía&nbsp;de&nbsp;aviones<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;CREATE&nbsp;OBJECT&nbsp;r_carrier<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_name&nbsp;=&nbsp;'AIR&nbsp;PIOLÍN'.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**&nbsp;Insertar&nbsp;compañía&nbsp;aérea&nbsp;como&nbsp;partner&nbsp;agencia<br />
+*&nbsp;&nbsp;r_agency-&gt;add_partner(&nbsp;r_carrier&nbsp;).<br />
+<br />
+**&nbsp;Avion&nbsp;pasajeros<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;TRY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CREATE&nbsp;OBJECT&nbsp;r_passenger<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'BOEING'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_planetype&nbsp;=&nbsp;'747-400'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_seats&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;345.<br />
+   </div>
+   <div class="codeComment">
+**&nbsp;insertamos&nbsp;aviones&nbsp;pasajeros&nbsp;en&nbsp;tabla&nbsp;compañia&nbsp;aerea,&nbsp;si&nbsp;lo&nbsp;dejamos,&nbsp;lo&nbsp;inserta&nbsp;dos&nbsp;veces&nbsp;en&nbsp;la&nbsp;tabla<br />
+**&nbsp;&nbsp;&nbsp;la&nbsp;que&nbsp;le&nbsp;forzamos&nbsp;aqui,&nbsp;mas&nbsp;la&nbsp;del&nbsp;evento.<br />
+*&nbsp;&nbsp;&nbsp;r_carrier-&gt;add_airplane(&nbsp;r_passenger&nbsp;).<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;CATCH&nbsp;cx_invalid_value&nbsp;INTO&nbsp;go_inv_value.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gv_text&nbsp;=&nbsp;go_inv_value-&gt;get_text(&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WRITE:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;icon_failure&nbsp;AS&nbsp;ICON,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gv_text,&nbsp;/.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gv_text&nbsp;=&nbsp;go_inv_value-&gt;previous-&gt;get_text(&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WRITE:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;icon_failure&nbsp;AS&nbsp;ICON,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gv_text,&nbsp;/.<br />
+&nbsp;&nbsp;ENDTRY.<br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+*****&nbsp;Avión&nbsp;cargo<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;TRY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CREATE&nbsp;OBJECT&nbsp;r_cargo<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'US&nbsp;Hercules'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_planetype&nbsp;=&nbsp;'747-200F'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_cargo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;533.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**&nbsp;insertamos&nbsp;aviones&nbsp;pasajeros&nbsp;en&nbsp;tabla&nbsp;compañia&nbsp;aerea<br />
+*r_carrier-&gt;add_airplane(&nbsp;r_cargo&nbsp;).<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;CATCH&nbsp;zcx_10_invalid_planetype&nbsp;INTO&nbsp;go_inv_planetype.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gv_text&nbsp;=&nbsp;go_inv_planetype-&gt;get_text(&nbsp;).<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WRITE:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;icon_failure&nbsp;AS&nbsp;ICON,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gv_text,&nbsp;/.<br />
+&nbsp;&nbsp;ENDTRY.<br />
+<br />
+&nbsp;&nbsp;TRY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CREATE&nbsp;OBJECT&nbsp;r_cargo<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'ES&nbsp;Xana'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_planetype&nbsp;=&nbsp;'747-200F'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_cargo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;600.<br />
+   </div>
+   <div class="codeComment">
+**&nbsp;insertamos&nbsp;aviones&nbsp;pasajeros&nbsp;en&nbsp;tabla&nbsp;compañia&nbsp;aerea<br />
+*r_carrier-&gt;add_airplane(&nbsp;r_cargo&nbsp;).<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;CATCH&nbsp;cx_invalid_value&nbsp;INTO&nbsp;go_inv_value.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gv_text&nbsp;=&nbsp;go_inv_value-&gt;get_text(&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WRITE:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;icon_failure&nbsp;AS&nbsp;ICON,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gv_text,&nbsp;/.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gv_text&nbsp;=&nbsp;go_inv_value-&gt;previous-&gt;get_text(&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WRITE:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;icon_failure&nbsp;AS&nbsp;ICON,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gv_text,&nbsp;/.<br />
+&nbsp;&nbsp;ENDTRY.<br />
+<br />
+<br />
+&nbsp;&nbsp;TRY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CREATE&nbsp;OBJECT&nbsp;r_cargo<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'ES&nbsp;Xanasssss'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_planetype&nbsp;=&nbsp;'747-900'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_cargo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;600.<br />
+   </div>
+   <div class="codeComment">
+**&nbsp;insertamos&nbsp;aviones&nbsp;pasajeros&nbsp;en&nbsp;tabla&nbsp;compañia&nbsp;aerea<br />
+*r_carrier-&gt;add_airplane(&nbsp;r_cargo&nbsp;).<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;CATCH&nbsp;cx_invalid_value&nbsp;INTO&nbsp;go_inv_value.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gv_text&nbsp;=&nbsp;go_inv_value-&gt;get_text(&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WRITE:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;icon_failure&nbsp;AS&nbsp;ICON,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gv_text,&nbsp;/.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gv_text&nbsp;=&nbsp;go_inv_value-&gt;previous-&gt;get_text(&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WRITE:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;icon_failure&nbsp;AS&nbsp;ICON,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gv_text,&nbsp;/.<br />
+&nbsp;&nbsp;ENDTRY.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*****&nbsp;insertamos&nbsp;partner&nbsp;en&nbsp;la&nbsp;agencia<br />
+<br />
+*&nbsp;&nbsp;r_agency-&gt;add_partner(&nbsp;r_carrier&nbsp;).<br />
+<br />
+**&nbsp;crear&nbsp;alquiler&nbsp;coches<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;CREATE&nbsp;OBJECT&nbsp;r_rental<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_name&nbsp;=&nbsp;'HAPPY&nbsp;CAR&nbsp;RENTAL'.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**&nbsp;crear&nbsp;camiones<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;CREATE&nbsp;OBJECT&nbsp;r_truck<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_make&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'MAN'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_cargo&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;45<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_distance&nbsp;=&nbsp;1000<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_fuel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;300.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;r_rental-&gt;add_vehicle(&nbsp;r_truck&nbsp;).<br />
+<br />
+**&nbsp;crear&nbsp;bus<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;CREATE&nbsp;OBJECT&nbsp;r_bus<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_make&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'Mercedes'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_passengers&nbsp;=&nbsp;80<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_distance&nbsp;&nbsp;&nbsp;=&nbsp;1200<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_fuel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;300.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;r_rental-&gt;add_vehicle(&nbsp;r_bus&nbsp;).<br />
+**&nbsp;crear&nbsp;camiones<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;CREATE&nbsp;OBJECT&nbsp;r_truck<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_make&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'VOLVO'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_cargo&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;48<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_distance&nbsp;=&nbsp;1300<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_fuel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;380.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;r_rental-&gt;add_vehicle(&nbsp;r_truck&nbsp;).<br />
+<br />
+*****&nbsp;insertamos&nbsp;compañía&nbsp;coches&nbsp;en&nbsp;lista&nbsp;partners,&nbsp;lo&nbsp;podemos&nbsp;hacer&nbsp;al&nbsp;principio&nbsp;o&nbsp;al&nbsp;final<br />
+<br />
+*&nbsp;&nbsp;r_agency-&gt;add_partner(&nbsp;r_rental&nbsp;).<br />
+<br />
+<br />
+**&nbsp;crear&nbsp;hoteles<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;CREATE&nbsp;OBJECT&nbsp;r_hotel<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_name&nbsp;=&nbsp;'Hotel&nbsp;Pepe'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_beds&nbsp;=&nbsp;310.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*si&nbsp;controlamos&nbsp;el&nbsp;evento&nbsp;de&nbsp;añadir&nbsp;partner,&nbsp;ya&nbsp;no&nbsp;hace&nbsp;falta&nbsp;mostrarlo&nbsp;aqui<br />
+*r_hotel-&gt;display_attributes(&nbsp;).<br />
+<br />
+<br />
+**&nbsp;crear&nbsp;hoteles<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;CREATE&nbsp;OBJECT&nbsp;r_hotel<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_name&nbsp;=&nbsp;'Hotel&nbsp;Don&nbsp;Rodrigo'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;im_beds&nbsp;=&nbsp;100.<br />
+   </div>
+   <div class="codeComment">
+*r_hotel-&gt;display_attributes(&nbsp;).<br />
+<br />
+**&nbsp;mostrar&nbsp;todos&nbsp;los&nbsp;atributos&nbsp;de&nbsp;partners&nbsp;e&nbsp;instancias<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;r_agency-&gt;display_agency_partners(&nbsp;).<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.2 - E.G.Mellodew. 1998-2014. Sap Release 731</td>
+   </tr>
+</table>
+</body>
+</html>
